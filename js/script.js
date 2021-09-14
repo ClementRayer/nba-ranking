@@ -5,16 +5,20 @@ let downloadButton = document.getElementById('download-button');
 
 draw = () => {  
     putBackgroundImage();
-    ctx.font = '14px helvetica';
-    ctx.fillText('zzccmxtp', 22, 88);
+    ctx.font = '700 14px helvetica';
+    ctx.fillText('zzccmxtp', 85, 128);
 }
 
 putBackgroundImage = () =>{
-    ctx.drawImage(img, 0, 0, 640, 640, 0, 0, 300, 300);
+    ctx.drawImage(img, 0, 0, 1280, 1280, 0, 0, 640, 640);
 }
 
 putText = (teamName) =>{
-    ctx.fillText(teamName, 22, 48);
+    ctx.fillText(teamName.toUpperCase(), 85, 128);
+    ctx.fillText('EQUIPE 2 SKETBA', 85, 163);
+    ctx.fillText('EQUIPE 2 SKETBA', 85, 198);
+    ctx.fillText('EQUIPE 2 SKETBA', 85, 233);
+    ctx.fillText('EQUIPE 2 SKETBA', 85, 268);
 }
 
 window.onload = draw();
@@ -26,8 +30,6 @@ validationButton.addEventListener('click', () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     putBackgroundImage();
     putText(seed1.value);
-    // var imageExport = canvas.toDataURL("image/png");
-    // document.write('<img src="'+imageExport+'"/>');
     console.log(canvas.toDataURL("image/png"));
     downloadButton.href = canvas.toDataURL("image/png");
 });
