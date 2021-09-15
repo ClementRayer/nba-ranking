@@ -1,3 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+body{
+    background-color: #003e5c;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #ffffff;
+    text-align: center;
+}
+h1{
+    font-size: 5rem;
+}
 #test-canvas{
     width: 640px;
     height: 640px;
@@ -6,6 +16,14 @@
 #source{
     width: 640px;
     height: 640px;
+}
+.inputs{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+}
+select{
+    color: #000000;
 }
 .seed-input{
     margin-top: 20px;
