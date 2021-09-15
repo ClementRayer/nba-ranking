@@ -19,8 +19,13 @@ h1{
 }
 .inputs{
     display: flex;
+    flex-direction: row;
+}
+.inputs-column{
+    display: flex;
     flex-direction: column;
     align-content: center;
+    max-width: 30vw;
 }
 select{
     color: #000000;
