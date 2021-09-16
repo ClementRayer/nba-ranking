@@ -8,28 +8,41 @@ body{
 h1{
     font-size: 5rem;
 }
+.inputs{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.conference-column{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 14vw;
+    margin: 0 4vw;
+}
+.inputs-column select{
+    width: 100%;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.buttons button {
+    margin: 10px 0;
+}
 #test-canvas{
     width: 640px;
     height: 640px;
+    margin-bottom: 20px;
     border: 1px solid aquamarine;
 }
 #source{
     width: 640px;
     height: 640px;
 }
-.inputs{
-    display: flex;
-    flex-direction: row;
-}
-.inputs-column{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    max-width: 30vw;
-}
-select{
-    color: #000000;
-}
-.seed-input{
-    margin-top: 20px;
+#download-button{
+    color: #ffffff;
+    font-size: 1.5rem;
+    text-decoration: none;
 }

@@ -8,22 +8,35 @@
     <title>Pronostic classement NBA</title>
 </head>
 <body>
-    <h1>Image export test</h1>
-    <canvas id="test-canvas" width="640px" height="640px">
-        <img id="source" src="img/image-fond-V2.png">
-    </canvas>
-    <br>
-    <p>ajouter un switch pour avoir uniquement le classement ou le nombre de win/loss</p>
-    <div class="inputs">
-        <div class="inputs-column" id="west-conference-inputs">
-            <p>Conference Ouest</p>
+    <div class="container">
+        <h1>Pronostic classement NBA</h1>
+        <p class="intro">
+            A l'approche de la saison NBA, chacun y va de ses pronostics. <br>
+            Pour vous simplifier la vie, ici il suffit de choisir les équipes dans l'ordre. Vous pouvez même indiquer le nombre de victoires estimées si le coeur vous en dit.<br>
+            Fini les listes tapées à la va-vite et les captures d'écran de bloc-note!
+        </p>
+        <br>
+        <p>ajouter un switch pour avoir uniquement le classement ou le nombre de win/loss</p>
+        <div class="inputs">
+            <div class="conference-column">
+                <p>Conférence Ouest</p>
+                <div class="inputs-column" id="west-conference-inputs"></div>
+            </div>
+            <div class="conference-column">
+                <p>Conférence Est</p>
+                <div class="inputs-column" id="east-conference-inputs"></div>
+            </div>
         </div>
-        <div class="inputs-column" id="east-conference-inputs">
-            <p>Conference Est</p>
+        <div class="buttons">
+            <button id="validation-button">Valider</button>
+            <button id="reset-button">Effacer mes choix</button>
         </div>
+        <canvas id="test-canvas" width="640px" height="640px">
+            <img id="source" src="img/image-fond-V2.png">
+        </canvas>
+        <br>
+        <a href="empty" download="Mes pronostics NBA" id="download-button">Télécharger mon tableau</a>
     </div>
-    <button id="validation-button" download="mon-bracket">Valider</button>
-    <a href="empty" download="Mes pronostics NBA" id="download-button">Download the file</a>
 </body>
 <script src="js/teamslist.js" type="text/javascript"></script>
 <script src="js/script.js" type="text/javascript" defer></script>
