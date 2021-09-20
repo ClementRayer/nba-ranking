@@ -3,6 +3,7 @@ var canvas = document.getElementById('export-canvas');
 var ctx = canvas.getContext('2d');
 ctx.font = '700 30px helvetica';
 var img = document.getElementById('source');
+var toggleScore = document.getElementById('toggle-score');
 var validationButton = document.getElementById('validation-button');
 var resetButton = document.getElementById('reset-button');
 var downloadButton = document.getElementById('download-button');
@@ -26,6 +27,14 @@ draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     putBackgroundImage();
 };
+
+// Handle the wins/losses toggle
+var displayScores = true;
+toggleScore.addEventListener('change', () =>{
+    displayScores = (toggleScore.checked) ? true : false;
+    updateChoices('west');
+    updateChoices('east');
+});
 
 // Puts the input texts in the canvas, shown canvas copies the export one
 putText = (conference) =>{
@@ -51,14 +60,16 @@ putText = (conference) =>{
         ctx.fillStyle = "#000000";
         ctx.fillText(seedToGet.value, teamXReference, 276+(64 * k));
         // Calculates the score based on inputed win number
-        var resultToGet = document.getElementById(`input-result-${currentConference}-${k}`);
-        var winsInputed = resultToGet.value;
-        var defeatsCalculated = 82 - winsInputed;
-        var calculatedWinLosses = `${winsInputed} - ${defeatsCalculated}`
-        // Places the calculated team score
-        ctx.font = '700 26px helvetica';
-        ctx.fillStyle = "#20c91c";
-        ctx.fillText(calculatedWinLosses, winLossXReference, 276+(64 * k));
+        if(displayScores === true){
+            var resultToGet = document.getElementById(`input-result-${currentConference}-${k}`);
+            var winsInputed = resultToGet.value;
+            var defeatsCalculated = 82 - winsInputed;
+            var calculatedWinLosses = `${winsInputed} - ${defeatsCalculated}`;
+            // Places the calculated team score
+            ctx.font = '700 26px helvetica';
+            ctx.fillStyle = "#20c91c";
+            ctx.fillText(calculatedWinLosses, winLossXReference, 276+(64 * k));
+        };
     };
     updateShownCanvas();
 };
@@ -87,6 +98,7 @@ placeChoices = (conference) =>{
         // Creates div
         var inputDiv = document.createElement('div');
         inputDiv.setAttribute('class', 'input-line');
+        inputDiv.setAttribute('id', `input-line-${conference}-${j}`);
         concernedInput.appendChild(inputDiv);
         // Creates the team picker
         var singleInput = document.createElement('select');
@@ -106,16 +118,38 @@ placeChoices = (conference) =>{
             optionItem.appendChild(valueTeamName);
             aimedInput.appendChild(optionItem);
         };
-        // Creates the score inputs
-        var scoreSingleInput = document.createElement('input');
-        scoreSingleInput.setAttribute('type', 'number');
-        scoreSingleInput.setAttribute('class', 'input-wins')
-        scoreSingleInput.setAttribute('min', '0');
-        scoreSingleInput.setAttribute('max', '82');
-        scoreSingleInput.setAttribute('id', `input-result-${conference}-${j}`);
-        inputDiv.appendChild(scoreSingleInput);
+        // Creates the score inputs if box checked
+        if(displayScores === true){
+            createScoreInput(conference, j);
+        };
     };
 };
+
+// Adds the number inputs
+createScoreInput = (conference, j) =>{
+    var scoreSingleInput = document.createElement('input');
+    scoreSingleInput.setAttribute('type', 'number');
+    scoreSingleInput.setAttribute('class', 'input-wins')
+    scoreSingleInput.setAttribute('min', '0');
+    scoreSingleInput.setAttribute('max', '82');
+    scoreSingleInput.setAttribute('id', `input-result-${conference}-${j}`);
+    var targetedDiv = document.getElementById(`input-line-${conference}-${j}`);
+    targetedDiv.appendChild(scoreSingleInput);
+}
+
+// Adds or remove the number inputs when the checkbox is updated
+updateChoices = (conference) =>{
+    if(displayScores === true){
+        for(var j = 1; j < 16; j++){
+            createScoreInput(conference, j);
+        };
+    }else{
+        for(var j = 1; j < 16; j++){
+            var inputToDelete = document.getElementById(`input-result-${conference}-${j}`);
+            inputToDelete.remove();
+        };
+    };
+}
 
 // Trigger on page load : canvas creation, choices in selectors
 window.onload = draw();
