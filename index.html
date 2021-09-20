@@ -16,14 +16,14 @@
             Fini les listes tapées à la va-vite et les captures d'écran de bloc-note!
         </p>
         <br>
-        <p>ajouter un switch pour avoir uniquement le classement ou le nombre de win/loss</p>
+        <p>ajouter un switch pour avoir uniquement le classement ou le nombre de win/loss<br>https://dev.to/alexsc6955/how-to-add-a-custom-font-to-an-html-canvas-1m3g</p>
         <div class="inputs">
             <div class="conference-column">
-                <p>Conférence Ouest</p>
+                <p class="conference-column-name">Conférence<br>Ouest</p>
                 <div class="inputs-column" id="west-conference-inputs"></div>
             </div>
             <div class="conference-column">
-                <p>Conférence Est</p>
+                <p class="conference-column-name">Conférence<br>Est</p>
                 <div class="inputs-column" id="east-conference-inputs"></div>
             </div>
         </div>
@@ -31,8 +31,11 @@
             <button id="validation-button">Valider</button>
             <button id="reset-button">Effacer mes choix</button>
         </div>
-        <canvas id="test-canvas" width="640px" height="640px">
-            <img id="source" src="img/image-fond-V2.png">
+        <canvas id="shown-canvas" width="1000px" height="1000px">
+            <img id="source" src="img/export-background.png">
+        </canvas>
+        <canvas id="export-canvas" width="1280px" height="1280px">
+            <img id="export-source" src="">
         </canvas>
         <br>
         <a href="empty" download="Mes pronostics NBA" id="download-button">Télécharger mon tableau</a>

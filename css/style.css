@@ -8,6 +8,9 @@ body{
 h1{
     font-size: 5rem;
 }
+p{
+    font-size: 1.2rem;
+}
 .inputs{
     display: flex;
     flex-direction: row;
@@ -17,7 +20,7 @@ h1{
     display: flex;
     flex-direction: column;
     align-content: center;
-    width: 14vw;
+    width: 16vw;
     margin: 0 4vw;
 }
 .inputs-column select{
@@ -31,11 +34,23 @@ h1{
 .buttons button {
     margin: 10px 0;
 }
-#test-canvas{
-    width: 640px;
-    height: 640px;
+.conference-column-name{
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+.input-line{
+    display: flex;
+}
+#shown-canvas{
+    width: 1000px;
+    height: 1000px;
+    background-image: url('../img/export-background.png');
+    background-size: cover;
     margin-bottom: 20px;
     border: 1px solid aquamarine;
+}
+#export-canvas{
+    display: none;
 }
 #source{
     width: 640px;
