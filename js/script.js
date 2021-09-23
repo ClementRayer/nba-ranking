@@ -44,11 +44,13 @@ putText = (conference) =>{
         var rankXReference = 110;
         var teamXReference = 152;
         var winLossXReference = 523;
+        var whiteRectangleXReference = 515;
     }else{
         var currentConference = 'east';
         var rankXReference = 681;
         var teamXReference = 723;
         var winLossXReference = 1095;
+        var whiteRectangleXReference = 1086;
     };
     ctx.fillStyle = "#000000";
     for(k = 1; k < 16; k++){
@@ -69,9 +71,17 @@ putText = (conference) =>{
             ctx.font = '700 26px helvetica';
             ctx.fillStyle = "#20c91c";
             ctx.fillText(calculatedWinLosses, winLossXReference, 276+(64 * k));
+        }else{
+            setWhiteRectangles(whiteRectangleXReference, k);
         };
     };
     updateShownCanvas();
+};
+
+// Adds white rectangles (triggered only if the win/loss is activated)
+setWhiteRectangles = (xPosition, yPosition) =>{
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(xPosition, 243+(64 * yPosition), 91, 44);
 };
 
 // Updates the canvas shown on the page
@@ -94,7 +104,7 @@ placeChoices = (conference) =>{
     var concernedInput = (conference === 'west') ? westConferenceInputs : eastConferenceInputs;
     var teamPools = (conference === 'west') ? westTeamsList : eastTeamsList;
     // Creates 15 inputs
-    for(var j = 1; j < 16; j++){
+    for(j = 1; j < 16; j++){
         // Creates div
         var inputDiv = document.createElement('div');
         inputDiv.setAttribute('class', 'input-line');
@@ -111,7 +121,7 @@ placeChoices = (conference) =>{
         placeHolder.appendChild(placeHolderText);
         singleInput.appendChild(placeHolder);
         // Places the needed teams in each input
-        for(var i = 0; i < teamPools.length; i++){
+        for(i = 0; i < teamPools.length; i++){
             var aimedInput = document.getElementById(`input-${conference}-${j}`);
             var optionItem = document.createElement('option');
             var valueTeamName = document.createTextNode(teamPools[i]);
@@ -140,11 +150,11 @@ createScoreInput = (conference, j) =>{
 // Adds or remove the number inputs when the checkbox is updated
 updateChoices = (conference) =>{
     if(displayScores === true){
-        for(var j = 1; j < 16; j++){
+        for(j = 1; j < 16; j++){
             createScoreInput(conference, j);
         };
     }else{
-        for(var j = 1; j < 16; j++){
+        for(j = 1; j < 16; j++){
             var inputToDelete = document.getElementById(`input-result-${conference}-${j}`);
             inputToDelete.remove();
         };
