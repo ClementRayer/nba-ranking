@@ -86,7 +86,7 @@ label:active:after {
     width: 100%;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 700;
-    font-size: 15px;
+    font-size: 1.1rem;
 }
 input[type="number"]{
     font-family: 'Josefin Sans', sans-serif;
@@ -135,12 +135,10 @@ input[type="number"]{
     color: #20c91c;
 }
 #shown-canvas{
-    width: 1000px;
-    height: 1000px;
     background-image: url('../img/export-background.png');
     background-size: cover;
     margin: 5vh 0 20px 0;
-    border: 1px solid aquamarine;
+    border: 1px solid rgb(127, 255, 212);
 }
 #export-canvas{
     display: none;
@@ -150,13 +148,29 @@ input[type="number"]{
     height: 640px;
 }
 #download-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: #ffffff;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     text-decoration: none;
-    transition: color ease 0.3s;
+    transition: ease 0.3s;
 }
 #download-button:hover{
     color: #20c91c;
+}
+.download-arrow{
+    margin: -3px 10px 0 0;
+    overflow: visible;
+}
+#download-button:hover #arrow-svg-global{
+    stroke: #20c91c;
+}
+#arrow-svg-move{
+    transition: 0.3s;
+}
+#download-button:hover #arrow-svg-move{
+    transform: translateY(-5px);
 }
 .footer{
     width: 100vw;
@@ -186,4 +200,38 @@ input[type="number"]{
 }
 #github-logo-img{
     width: 40px;
+}
+@media screen and (max-width: 450px) {
+    body{
+        width: 94vw;
+        margin: 0 3vw;
+    }
+    h1{
+        font-size: 3rem;
+    }
+    .score-label{
+        width: 100%;
+    }
+    .inputs{
+        flex-direction: column;
+    }
+    .conference-column{
+        width: 100%;
+        margin: 5vh 0 0 0;
+    }
+    input[type="number"]{
+        width: 15%;
+    }
+    #validation-button{
+        margin-top: 7vh;
+    }
+    #download-button{
+        margin-top: 2vh;
+    }
+    .footer{
+        margin-top: 5vh;
+    }
+    .footer-content{
+        justify-content: center;
+    }
 }

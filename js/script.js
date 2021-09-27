@@ -12,6 +12,18 @@ var downloadButton = document.getElementById('download-button');
 var shownCanvas = document.getElementById('shown-canvas');
 var shownCtx = shownCanvas.getContext('2d');
 
+// Handle the responsive : get viewport width, change the shown canvas size
+var shownCanvasWidth = 1000;
+var viewportWidth = window.screen.width;
+resizeShownCanvas = () =>{
+    if(viewportWidth < 450){
+        shownCanvasWidth = (94/100) * viewportWidth;
+        shownCanvas.setAttribute('width', `${shownCanvasWidth}px`);
+        shownCanvas.setAttribute('height', `${shownCanvasWidth}px`);
+    }
+}
+window.onload = resizeShownCanvas();
+
 // Create variables for input generation
 var westConferenceInputs = document.getElementById('west-conference-inputs');
 var eastConferenceInputs = document.getElementById('east-conference-inputs');
@@ -86,7 +98,7 @@ setWhiteRectangles = (xPosition, yPosition) =>{
 
 // Updates the canvas shown on the page
 updateShownCanvas = () =>{
-    shownCtx.drawImage(canvas, 0, 0, 1280, 1280, 0, 0, 1000, 1000);
+    shownCtx.drawImage(canvas, 0, 0, 1280, 1280, 0, 0, shownCanvasWidth, shownCanvasWidth);
 }
 
 // Validate choices : resets the canvas, set back image and uses the text, prepares the download CTA to download the validated canvas
