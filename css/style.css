@@ -140,7 +140,7 @@ input[type="number"]{
     margin: 5vh 0 20px 0;
     border: 1px solid rgb(127, 255, 212);
 }
-#export-canvas{
+#export-canvas, #half-res-canvas{
     display: none;
 }
 #source{
@@ -227,6 +227,9 @@ input[type="number"]{
     }
     #download-button{
         margin-top: 2vh;
+    }
+    #download-text{
+        width: 60%;
     }
     .footer{
         margin-top: 5vh;

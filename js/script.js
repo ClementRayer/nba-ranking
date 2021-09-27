@@ -8,6 +8,10 @@ var validationButton = document.getElementById('validation-button');
 var resetButton = document.getElementById('reset-button');
 var downloadButton = document.getElementById('download-button');
 
+// Declaire variables about the canvas half-res used for mobile
+var halfResCanvas = document.getElementById('half-res-canvas');
+var halfCtx = halfResCanvas.getContext('2d');
+
 // Declare variables about the canvas shown in the page
 var shownCanvas = document.getElementById('shown-canvas');
 var shownCtx = shownCanvas.getContext('2d');
@@ -15,11 +19,17 @@ var shownCtx = shownCanvas.getContext('2d');
 // Handle the responsive : get viewport width, change the shown canvas size
 var shownCanvasWidth = 1000;
 var viewportWidth = window.screen.width;
+var shownCanvasReference = canvas;
+var divideRatio = 1;
+var downloadText = document.getElementById('download-text');
 resizeShownCanvas = () =>{
     if(viewportWidth < 450){
         shownCanvasWidth = (94/100) * viewportWidth;
         shownCanvas.setAttribute('width', `${shownCanvasWidth}px`);
         shownCanvas.setAttribute('height', `${shownCanvasWidth}px`);
+        shownCanvasReference = halfResCanvas;
+        divideRatio = 2;
+        downloadText.innerHTML = 'Télécharger mon tableau en HD';
     }
 }
 window.onload = resizeShownCanvas();
@@ -31,12 +41,14 @@ var eastConferenceInputs = document.getElementById('east-conference-inputs');
 // Sets the background (called in other functions)
 putBackgroundImage = () =>{
     ctx.drawImage(img, 0, 0, 1280, 1280, 0, 0, 1280, 1280);
-    updateShownCanvas();
+    halfCtx.drawImage(img, 0, 0, 1280, 1280, 0, 0, 640, 640);
+    updateShownCanvas(shownCanvasReference);
 };
 
 // Create the basic canvas, only a background
 draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    halfCtx.clearRect(0, 0, canvas.width, canvas.height);
     putBackgroundImage();
 };
 
@@ -84,26 +96,52 @@ putText = (conference) =>{
             ctx.fillStyle = "#20c91c";
             ctx.fillText(calculatedWinLosses, winLossXReference, 276+(64 * k));
         }else{
-            setWhiteRectangles(whiteRectangleXReference, k);
+            setWhiteRectangles(ctx, whiteRectangleXReference, k);
+        };
+        // Reproduce everything in half size for the half res canvas
+        halfCtx.fillStyle = "#000000";
+        var seedToGet = document.getElementById(`input-${currentConference}-${k}`);
+        halfCtx.font = '700 15px helvetica';
+        halfCtx.fillStyle = "#20c91c";
+        halfCtx.fillText(`${k}.`, (rankXReference / 2), 138+(32 * k));
+        halfCtx.fillStyle = "#000000";
+        halfCtx.fillText(seedToGet.value, (teamXReference / 2), 138+(32 * k));
+        if(displayScores === true){
+            var resultToGet = document.getElementById(`input-result-${currentConference}-${k}`);
+            var winsInputed = resultToGet.value;
+            var defeatsCalculated = 82 - winsInputed;
+            var calculatedWinLosses = `${winsInputed} - ${defeatsCalculated}`;
+            halfCtx.font = '700 13px helvetica';
+            halfCtx.fillStyle = "#20c91c";
+            halfCtx.fillText(calculatedWinLosses, (winLossXReference / 2), 138+(32 * k));
+        }else{
+            setWhiteRectangles(halfCtx, whiteRectangleXReference, k);
         };
     };
-    updateShownCanvas();
+    updateShownCanvas(shownCanvasReference);
 };
 
 // Adds white rectangles (triggered only if the win/loss is activated)
-setWhiteRectangles = (xPosition, yPosition) =>{
-    ctx.fillStyle = "#ffffff";
-    ctx.fillRect(xPosition, 243+(64 * yPosition), 91, 44);
+setWhiteRectangles = (aimedCanvas, xPosition, yPosition) =>{
+    if(aimedCanvas = ctx){
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(xPosition, 243+(64 * yPosition), 91, 44);
+    }
+    if(aimedCanvas = halfCtx){
+        halfCtx.fillStyle = "#ffffff";
+        halfCtx.fillRect((xPosition / 2), 122+(32 * yPosition), 45, 21);
+    }
 };
 
 // Updates the canvas shown on the page
-updateShownCanvas = () =>{
-    shownCtx.drawImage(canvas, 0, 0, 1280, 1280, 0, 0, shownCanvasWidth, shownCanvasWidth);
+updateShownCanvas = (shownCanvasReference) =>{
+    shownCtx.drawImage(shownCanvasReference, 0, 0, (1280 / divideRatio), (1280 / divideRatio), 0, 0, shownCanvasWidth, shownCanvasWidth);
 }
 
 // Validate choices : resets the canvas, set back image and uses the text, prepares the download CTA to download the validated canvas
 validationButton.addEventListener('click', () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    halfCtx.clearRect(0, 0, (canvas.width / 2), (canvas.height / 2));
     putBackgroundImage();
     putText('west');
     putText('east');
@@ -181,10 +219,11 @@ window.onload = placeChoices('east');
 // Reset the choices by regenerating the inputs
 resetButton.addEventListener('click', () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    halfCtx.clearRect(0, 0, (canvas.width / 2), (canvas.height / 2));
     putBackgroundImage();
     westConferenceInputs.innerHTML = '';
     eastConferenceInputs.innerHTML = '';
     placeChoices('west');
     placeChoices('east');
-    updateShownCanvas();
+    updateShownCanvas(shownCanvasReference);
 });
