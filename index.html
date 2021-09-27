@@ -38,9 +38,8 @@
         <canvas id="shown-canvas" width="1000px" height="1000px">
             <img id="source" src="img/export-background.png">
         </canvas>
-        <canvas id="export-canvas" width="1280px" height="1280px">
-            <img id="export-source" src="">
-        </canvas>
+        <canvas id="export-canvas" width="1280px" height="1280px"></canvas>
+        <canvas id="half-res-canvas" width="640px" height="640px"></canvas>
         <br>
         <a href="#" download="Mes pronostics NBA" id="download-button">
             <svg class="download-arrow" width="25" height="25" xmlns="http://www.w3.org/2000/svg">
@@ -53,7 +52,7 @@
                     <path d="M2 23 L23 23"></path>
                 </g>
             </svg>
-            Télécharger mon tableau
+            <span id="download-text">Télécharger mon tableau</span>
         </a>
     </div>
     <div class="footer">
