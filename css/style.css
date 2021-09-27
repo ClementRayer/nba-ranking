@@ -79,7 +79,7 @@ label:active:after {
     display: flex;
     flex-direction: column;
     align-content: center;
-    width: 18vw;
+    width: 25vw;
     margin: 0 4vw;
 }
 .inputs-column select{
@@ -92,6 +92,7 @@ input[type="number"]{
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 700;
     text-align: center;
+    width: 20%;
 }
 .conference-column-name{
     font-size: 2.5rem;
@@ -201,6 +202,14 @@ input[type="number"]{
 #github-logo-img{
     width: 40px;
 }
+@media screen and (max-width: 1024px) {
+    h1{
+        font-size: 4rem;
+    }
+    .conference-column {
+        width: 35vw;
+    }
+}
 @media screen and (max-width: 450px) {
     body{
         width: 94vw;
@@ -218,9 +227,6 @@ input[type="number"]{
     .conference-column{
         width: 100%;
         margin: 5vh 0 0 0;
-    }
-    input[type="number"]{
-        width: 15%;
     }
     #validation-button{
         margin-top: 7vh;

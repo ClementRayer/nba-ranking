@@ -23,7 +23,7 @@ var shownCanvasReference = canvas;
 var divideRatio = 1;
 var downloadText = document.getElementById('download-text');
 resizeShownCanvas = () =>{
-    if(viewportWidth < 450){
+    if(viewportWidth < 1024){
         shownCanvasWidth = (94/100) * viewportWidth;
         shownCanvas.setAttribute('width', `${shownCanvasWidth}px`);
         shownCanvas.setAttribute('height', `${shownCanvasWidth}px`);
