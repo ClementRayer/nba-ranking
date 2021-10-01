@@ -83,16 +83,25 @@ label:active:after {
     margin: 0 4vw;
 }
 .inputs-column select{
+    -webkit-appearance: none;
     width: 100%;
+    height: 28px;
+    padding: 4px;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 700;
     font-size: 1.1rem;
+    border: #003e5c solid 1px;
+    border-radius: 0px;
 }
 input[type="number"]{
+    -webkit-appearance: none;
+    width: 20%;
+    height: 18px;
+    padding: 4px;
     font-family: 'Josefin Sans', sans-serif;
     font-weight: 700;
     text-align: center;
-    width: 20%;
+    border: #003e5c solid 1px;
 }
 .conference-column-name{
     font-size: 2.5rem;
