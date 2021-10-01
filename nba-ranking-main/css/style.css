@@ -1,0 +1,247 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+body{
+    background-color: #003e5c;
+    font-family: 'Josefin Sans', sans-serif;
+    color: #ffffff;
+    text-align: center;
+}
+h1{
+    font-size: 5rem;
+    margin-top: 8vh;
+}
+p{
+    font-size: 1.2rem;
+}
+.intro{
+    line-height: 1.2;
+}
+.toggle-score-block{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+input[type=checkbox]{
+	height: 0;
+	width: 0;
+	visibility: hidden;
+}
+label {
+	cursor: pointer;
+	text-indent: -9999px;
+	width: 40px;
+	height: 20px;
+	background: #808080;
+	display: block;
+	border-radius: 100px;
+	position: relative;
+}
+label:after {
+	content: '';
+	position: absolute;
+	left: 0px;
+	width: 20px;
+	height: 20px;
+	background: #fff;
+	border-radius: 90px;
+	transition: 0.3s;
+}
+input:checked + label {
+	background: #20c91c;
+}
+input:checked + label:after {
+	left: 100%;
+	transform: translateX(-100%);
+}
+label:active:after {
+	width: 30px;
+}
+.score-label{
+    margin-left: 15px;
+    text-align: left;
+    font-size: 1rem;
+}
+.score-label-first-line{
+    font-size: 1.5rem;
+}
+.inputs{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.current-conference{
+    font-family: 'Permanent Marker', cursive;
+    color: #20c91c;
+    line-height: 0.8;
+}
+.conference-column{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    width: 25vw;
+    margin: 0 4vw;
+}
+.inputs-column select{
+    width: 100%;
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+input[type="number"]{
+    font-family: 'Josefin Sans', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    width: 20%;
+}
+.conference-column-name{
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+.input-line{
+    display: flex;
+    height: 28px;
+    align-items: stretch;
+}
+.buttons{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#validation-button{
+    margin: 2vh 0;
+    padding: 15px 15px 10px 15px;
+    font-family: 'Josefin Sans', sans-serif;
+    background-color: #003e5c;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    border: 2px solid #ffffff;
+    cursor: pointer;
+    transition: color ease 0.3s;
+}
+#validation-button:hover{
+    color: #20c91c;
+    border: 2px solid #20c91c;
+}
+#reset-button{
+    font-family: 'Josefin Sans', sans-serif;
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    color: #ffffff;
+    cursor: pointer;
+    transition: color ease 0.3s;
+}
+#reset-button:hover{
+    color: #20c91c;
+}
+#shown-canvas{
+    background-image: url('../img/export-background.png');
+    background-size: cover;
+    margin: 5vh 0 20px 0;
+    border: 1px solid rgb(127, 255, 212);
+}
+#export-canvas, #half-res-canvas{
+    display: none;
+}
+#source{
+    width: 640px;
+    height: 640px;
+}
+#download-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    font-size: 1.6rem;
+    text-decoration: none;
+    transition: ease 0.3s;
+}
+#download-button:hover{
+    color: #20c91c;
+}
+.download-arrow{
+    margin: -3px 10px 0 0;
+    overflow: visible;
+}
+#download-button:hover #arrow-svg-global{
+    stroke: #20c91c;
+}
+#arrow-svg-move{
+    transition: 0.3s;
+}
+#download-button:hover #arrow-svg-move{
+    transform: translateY(-5px);
+}
+.footer{
+    width: 100vw;
+    max-width: 100%;   
+}
+.footer-content{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 20px 3vw;
+    font-size: 1.1rem;
+}
+#personnal-site{
+    color: #20c91c;
+    text-decoration: none;
+}
+#personnal-site:hover{
+    text-decoration: underline;
+}
+.footer-right{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#github-logo{
+    margin-left: 20px;
+}
+#github-logo-img{
+    width: 40px;
+}
+@media screen and (max-width: 1024px) {
+    h1{
+        font-size: 4rem;
+    }
+    .conference-column {
+        width: 35vw;
+    }
+}
+@media screen and (max-width: 450px) {
+    body{
+        width: 94vw;
+        margin: 0 3vw;
+    }
+    h1{
+        font-size: 3rem;
+    }
+    .score-label{
+        width: 100%;
+    }
+    .inputs{
+        flex-direction: column;
+    }
+    .conference-column{
+        width: 100%;
+        margin: 5vh 0 0 0;
+    }
+    #validation-button{
+        margin-top: 7vh;
+    }
+    #download-button{
+        margin-top: 2vh;
+    }
+    #download-text{
+        width: 60%;
+    }
+    .footer{
+        margin-top: 5vh;
+    }
+    .footer-content{
+        justify-content: center;
+    }
+}
