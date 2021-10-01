@@ -100,7 +100,8 @@ input[type="number"]{
 }
 .input-line{
     display: flex;
-    height: 25px;
+    height: 28px;
+    align-items: stretch;
 }
 .buttons{
     display: flex;
