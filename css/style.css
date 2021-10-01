@@ -92,6 +92,8 @@ label:active:after {
     font-size: 1.1rem;
     border: #003e5c solid 1px;
     border-radius: 0px;
+    background-color: #ffffff;
+    color: #000000;
 }
 input[type="number"]{
     -webkit-appearance: none;
