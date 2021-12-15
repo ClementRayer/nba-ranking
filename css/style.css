@@ -83,7 +83,6 @@ label:active:after {
     margin: 0 4vw;
 }
 .inputs-column select{
-    -webkit-appearance: none;
     width: 100%;
     height: 28px;
     padding: 4px;
